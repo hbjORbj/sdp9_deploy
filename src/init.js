@@ -14,7 +14,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8080;
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
