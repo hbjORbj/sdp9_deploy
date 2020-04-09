@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 mongoose.connect(
-  "mongodb+srv://sdp9:sdp9@sdp9-p8dmf.mongodb.net/test?retryWrites=true&w=majority",
+  process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.env.MONGO_URL,
   {
     useNewUrlParser: true,
     useFindAndModify: false,

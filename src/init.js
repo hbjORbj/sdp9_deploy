@@ -10,9 +10,11 @@ import userRouter from "./routers/userRouter";
 import landRouter from "./routers/landRouter";
 import "./models/Land";
 import "./models/Comment";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -24,7 +26,7 @@ app.use(middleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.lands, landRouter);
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname + "/public"));
 
 const handleListening = () => {
   console.log(`✅ Listening on http://localhost:${PORT}`);
