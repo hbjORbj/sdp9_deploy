@@ -11,7 +11,6 @@ block content
 
         //- h4 Helping You Make the Most of Your Land
         //- br
-
     .land-box
       br
       .home-lands
@@ -22,11 +21,12 @@ block content
               id: land.id,
               name: land.name
             })
-            //- #row-auto
-              //- p 1 Severe Warning, 3 Warnings
+              //- #row-auto
+                //- p 1 Severe Warning, 3 Warnings
 
+          grid-tem
+            .form-container
+              form(action=`/lands${routes.addLand}`, method="get").addland
+                input(type="submit", value="+ Add Land")      
 
-        grid-tem
-          .form-container
-            form(action=`/lands${routes.addLand}`, method="get").addland
-              input(type="submit", value="+ Add Land")
+    

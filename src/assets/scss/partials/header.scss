@@ -1,38 +1,41 @@
 .header {
   background-color: $light-blue;
   margin-bottom: 50px;
-  .header_wrapper {
+  .header__wrapper {
     padding: 5px 0px;
     width: 100%;
+    margin: 0 auto;
     max-width: 1200px;
-    margin-left: 70px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-
-    .header_column {
-      h3 {
-        color: white;
-        font-size: 35px;
-      }
+    .header__column {
+      margin-right: 300px;
       a {
-        display: flex;
-        align-items: center;
+        color: white;
+        h3 {
+          margin-right: 100px;
+        }
+      }
+
+      li {
+        color: white;
+      }
+      &:nth-child(2) {
+        width: 100%;
+        justify-self: center;
+      }
+      &:last-child {
+        justify-self: end;
       }
       ul {
+        padding-top: 8px;
         display: flex;
-        justify-content: space-evenly;
-        margin-right: -500px;
-        padding-top: 7px;
-        font-weight: 450;
-        font-size: 18px;
+        color: white;
+        font-weight: 600;
         text-transform: uppercase;
         li:not(:last-child) {
-          margin-left: 580px;
-        }
-        a {
-          color: white;
-          text-decoration: none;
+          margin-right: 15px;
         }
       }
       form {
@@ -44,6 +47,7 @@
           font-size: 14px;
           color: $black;
           font-weight: 600;
+          max-width: none;
           &::placeholder {
             font-weight: 300;
             color: rgba(0, 0, 0, 0.7);

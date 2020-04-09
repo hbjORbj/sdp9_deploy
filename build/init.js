@@ -44,7 +44,7 @@ app.use(_middlewares.middleware);
 app.use(_routes["default"].home, _globalRouter["default"]);
 app.use(_routes["default"].users, _userRouter["default"]);
 app.use(_routes["default"].lands, _landRouter["default"]);
-app.use(_express["default"]["static"](__dirname + "/public"));
+app.use(_express["default"]["static"](__dirname + "/views/public"));
 
 var handleListening = function handleListening() {
   console.log("\u2705 Listening on http://localhost:".concat(PORT));

@@ -1,12 +1,9 @@
 header.header
-    .header_wrapper
-        .header_column.header-logo
-            a(href="/")
-                img(src='../../images/sdp-logo.png' alt='eIEIO Logo' height="40")
-        .header_column
+    .header__wrapper
+        .header__column
             a(href='/')
                 h3 eIEIO
-        .header_column.header-columns-right
+        .header__column
             ul                
                 if !user.isAuthenticated
                     li
