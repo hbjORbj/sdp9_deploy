@@ -1,16 +1,28 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
-mongoose.connect("mongodb+srv://sdp9:sdp9@sdp9-p8dmf.mongodb.net/test?retryWrites=true&w=majority", {
+"use strict";
+
+var _mongoose = _interopRequireDefault(require("mongoose"));
+
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+_dotenv["default"].config();
+
+_mongoose["default"].connect("mongodb+srv://sdp9:sdp9@sdp9-p8dmf.mongodb.net/test?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
 });
-const db = mongoose.connection;
 
-const handleOpen = () => console.log("✅ Connected to DB");
+var db = _mongoose["default"].connection;
 
-const handleError = error => console.log(`❌ Error on DB Connection: ${error}`);
+var handleOpen = function handleOpen() {
+  return console.log("✅ Connected to DB");
+};
+
+var handleError = function handleError(error) {
+  return console.log("\u274C Error on DB Connection: ".concat(error));
+};
 
 db.once("open", handleOpen);
 db.on("error", handleError);

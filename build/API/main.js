@@ -1,3 +1,5 @@
+"use strict";
+
 // SCRIPT TO TEST API
 function get() {
   var x = document.getElementById("form");
@@ -12,9 +14,9 @@ function get() {
     },
     method: 'GET' // defines the method
 
-  }).then(resp => {
+  }).then(function (resp) {
     return resp.json();
-  }).then(r => {
+  }).then(function (r) {
     console.log(reading_type);
 
     if (reading_type != "all") {
@@ -24,17 +26,17 @@ function get() {
     }
 
     console.log(r);
-    const app = document.getElementById('root'); // create a container as a div in the html
+    var app = document.getElementById('root'); // create a container as a div in the html
 
-    const container = document.createElement('div');
+    var container = document.createElement('div');
     container.setAttribute('class', 'container'); // place the container on the website
 
     app.appendChild(container); // create a card as a div (this is a container for the joke!)
 
-    const card = document.createElement('div');
+    var card = document.createElement('div');
     card.setAttribute('class', 'card'); // text placeholder
 
-    const p1 = document.createElement('p');
+    var p1 = document.createElement('p');
     p1.textContent = "RETURNED RAW " + reading_type + " VALUES: " + JSON.stringify(r);
     container.appendChild(card); // places the text on the card
 

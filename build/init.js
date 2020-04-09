@@ -1,33 +1,49 @@
-import express from "express";
-import path from "path";
-import "@babel/polyfill";
-import "./db";
-import bodyParser from "body-parser";
-import { middleware } from "./middlewares";
-import routes from "./routes";
-import globalRouter from "./routers/globalRouter";
-import userRouter from "./routers/userRouter";
-import landRouter from "./routers/landRouter";
-import "./models/Land";
-import "./models/Comment";
-const app = express();
-const PORT = 4000;
+"use strict";
+
+var _express = _interopRequireDefault(require("express"));
+
+var _path = _interopRequireDefault(require("path"));
+
+require("@babel/polyfill");
+
+require("./db");
+
+var _bodyParser = _interopRequireDefault(require("body-parser"));
+
+var _middlewares = require("./middlewares");
+
+var _routes = _interopRequireDefault(require("./routes"));
+
+var _globalRouter = _interopRequireDefault(require("./routers/globalRouter"));
+
+var _userRouter = _interopRequireDefault(require("./routers/userRouter"));
+
+var _landRouter = _interopRequireDefault(require("./routers/landRouter"));
+
+require("./models/Land");
+
+require("./models/Comment");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var app = (0, _express["default"])();
+var PORT = 4000;
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
-app.use("/static", express.static(path.join(__dirname, "static")));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.set("views", _path["default"].join(__dirname, "views"));
+app.use("/static", _express["default"]["static"](_path["default"].join(__dirname, "static")));
+app.use(_bodyParser["default"].json());
+app.use(_bodyParser["default"].urlencoded({
   extended: true
 }));
-app.use("/static", express.static("static"));
-app.use(middleware);
-app.use(routes.home, globalRouter);
-app.use(routes.users, userRouter);
-app.use(routes.lands, landRouter);
-app.use(express.static(__dirname + '/public'));
+app.use("/static", _express["default"]["static"]("static"));
+app.use(_middlewares.middleware);
+app.use(_routes["default"].home, _globalRouter["default"]);
+app.use(_routes["default"].users, _userRouter["default"]);
+app.use(_routes["default"].lands, _landRouter["default"]);
+app.use(_express["default"]["static"](__dirname + '/public'));
 
-const handleListening = () => {
-  console.log(`✅ Listening on http://localhost:${PORT}`);
+var handleListening = function handleListening() {
+  console.log("\u2705 Listening on http://localhost:".concat(PORT));
 };
 
 app.listen(PORT, handleListening);

@@ -1,5 +1,15 @@
-import mongoose from "mongoose";
-const LandSchema = new mongoose.Schema({
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _mongoose = _interopRequireDefault(require("mongoose"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var LandSchema = new _mongoose["default"].Schema({
   name: {
     type: String,
     required: "Name of land is required"
@@ -64,5 +74,8 @@ const LandSchema = new mongoose.Schema({
     type: String
   }
 });
-const model = mongoose.model("Land", LandSchema);
-export default model;
+
+var model = _mongoose["default"].model("Land", LandSchema);
+
+var _default = model;
+exports["default"] = _default;

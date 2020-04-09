@@ -1,17 +1,23 @@
-const HOME = "/";
-const JOIN = "/join";
-const LOGIN = "/login";
-const LOGOUT = "/logout";
-const ABOUT = "/about";
-const CONTACT = "/contact";
-const USERS = "/users";
-const USER_DETAIL = "/:id";
-const LANDS = "/lands";
-const ADD_LAND = "/addLand";
-const LAND_DETAIL = "/:id";
-const START_SURVEY = "/:id/startSurvey";
-const DELETE_LAND = "/:id/delete";
-const routes = {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var HOME = "/";
+var JOIN = "/join";
+var LOGIN = "/login";
+var LOGOUT = "/logout";
+var ABOUT = "/about";
+var CONTACT = "/contact";
+var USERS = "/users";
+var USER_DETAIL = "/:id";
+var LANDS = "/lands";
+var ADD_LAND = "/addLand";
+var LAND_DETAIL = "/:id";
+var START_SURVEY = "/:id/startSurvey";
+var DELETE_LAND = "/:id/delete";
+var routes = {
   home: HOME,
   join: JOIN,
   login: LOGIN,
@@ -19,27 +25,28 @@ const routes = {
   about: ABOUT,
   contact: CONTACT,
   users: USERS,
-  userDetail: id => {
-    if (id) return `/users/${id}`;else return USER_DETAIL;
+  userDetail: function userDetail(id) {
+    if (id) return "/users/".concat(id);else return USER_DETAIL;
   },
   lands: LANDS,
-  startSurvey: id => {
+  startSurvey: function startSurvey(id) {
     if (id) {
-      return `/lands/${id}/startSurvey`;
+      return "/lands/".concat(id, "/startSurvey");
     } else {
       return START_SURVEY;
     }
   },
   addLand: ADD_LAND,
-  landDetail: id => {
-    if (id) return `/lands/${id}`;else return LAND_DETAIL;
+  landDetail: function landDetail(id) {
+    if (id) return "/lands/".concat(id);else return LAND_DETAIL;
   },
-  deleteLand: id => {
+  deleteLand: function deleteLand(id) {
     if (id) {
-      return `/lands/${id}/delete`;
+      return "/lands/".concat(id, "/delete");
     } else {
       return DELETE_LAND;
     }
   }
 };
-export default routes;
+var _default = routes;
+exports["default"] = _default;
