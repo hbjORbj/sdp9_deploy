@@ -24,10 +24,14 @@ require("./models/Land");
 
 require("./models/Comment");
 
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+_dotenv["default"].config();
+
 var app = (0, _express["default"])();
-var PORT = 4000;
+var PORT = process.env.PORT || 8080;
 app.set("view engine", "pug");
 app.set("views", _path["default"].join(__dirname, "views"));
 app.use("/static", _express["default"]["static"](_path["default"].join(__dirname, "static")));
@@ -40,7 +44,7 @@ app.use(_middlewares.middleware);
 app.use(_routes["default"].home, _globalRouter["default"]);
 app.use(_routes["default"].users, _userRouter["default"]);
 app.use(_routes["default"].lands, _landRouter["default"]);
-app.use(_express["default"]["static"](__dirname + '/public'));
+app.use(_express["default"]["static"](__dirname + "/public"));
 
 var handleListening = function handleListening() {
   console.log("\u2705 Listening on http://localhost:".concat(PORT));

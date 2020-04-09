@@ -2,11 +2,7 @@
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
-var _dotenv = _interopRequireDefault(require("dotenv"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-_dotenv["default"].config();
 
 _mongoose["default"].connect("mongodb+srv://sdp9:sdp9@sdp9-p8dmf.mongodb.net/test?retryWrites=true&w=majority", {
   useNewUrlParser: true,
