@@ -1,0 +1,166 @@
+extends main
+
+block content
+    div
+    // THE ENTIRE THING
+    .row(style="margin-left: 3%;").title-area
+        //- .col-sm-1
+            //- a(href=routes.deleteLand(land.id)) 
+            //-         button.delete.top-small Back to My Land
+
+        .col-sm-2
+        .col-sm-10
+        h1
+            | #{name}
+            br
+        .col-sm-2
+        .col-sm-10
+        p
+            b NE: 
+            |  #{pointALong}, #{pointALat} 
+            br
+            b SW:
+            |  #{pointBLong}, #{pointBLat}
+            br
+            b Desired CO:
+            |  #{userCO} ppm
+            br
+            b Desired Moisture:
+            |  #{userMoist}%
+            br
+            b Desired pH:
+            |  #{userPH}
+            br
+            b Last reading:
+            |  #{surveyDate}
+
+
+        .col-xl-8
+            .form-container.survey
+                a(href='/' style="margin-bottom: 2%")
+                    button.BackToLand Back to My Land
+
+                form.survey(method="get", action=routes.startSurvey(land.id))
+                    input(type="submit", value="Request Survey")
+                
+
+    .div(style="margin-left: 5%;") 
+        b Alerts:
+            #numWarnings
+    // Div after the title
+    div(style='background-color: #f8f8f8; margin: 5%;')
+        // RECENT READINGS
+        h2
+            button.collapsible(type='button') 
+                    | Recent Readings
+
+            .content
+                div
+                    #recent-readings.title-with-margins.analysis-section-title
+                        h3 Most Recent Readings
+                        p Averages of your most recent readings from your latest survey.
+
+                        //- #numWarnings
+
+                    .row.reading
+                        .col-xs-4.col-centered
+                        .card.card-1.card-contents.reading.noHover
+                            .reading-title
+                                h5 Average Carbon Monoxide:
+                            
+                            #COValue(style="padding: 6px;")
+                            #COStatus
+                            
+                        .col-xs-4.col-centered
+                        .card.card-1.card-contents.reading.noHover
+                            .reading-title 
+                                h5 Average Soil Moisture:
+                            #moistValue(style="padding: 6px;")
+                            #moistStatus
+
+                        .col-xs-4.col-centered
+                        .card.card-1.card-contents.reading.noHover
+                            .reading-title
+                                h5 Average pH:
+                            #phValue(style="padding: 6px;")
+                            #PHStatus
+
+        h2
+            button.collapsible(type='button') Data Visualisation
+            .content
+                #Visualisation.title-with-margins.analysis-section-title
+                    h3 Visualisation of Most Recent Survey Readings
+                .analysis-text 
+                    p(style="text-align: justify;") 
+                        | These heatmaps visualise the values of the most recent set of readings accross the land area. The bars on the side show the colour scale. 
+                        | The colour displayed on the heatmap will correspond the a value as shown on the colour scale.
+                        | The x and y co-ordinates of the heatmaps show the latitude and longitide of the position of each reading, respectively.
+                        br
+                        br
+                    p Explore the heatmaps tools and options on the top right of each heatmap to investigate the data further. 
+                    br
+                    #co-heatmap
+                    #co-smoothing
+                        br
+                        p 
+                            | The heatmap displays the average readings for each qaudrant. Smoothing the heatmap will add a blurring affect which creates gradients between the blocks.
+                            | Although this may look more realistic, smoothing makes assumptions and therefore may make it more challenging to identify problem areas.
+                        
+                        button#toggleCOButton.smooth-button(onclick="toggleCOSmoothing()") Toggle Smoothing
+                        br
+                        br
+                    #moisture-heatmap
+                    #moist-smoothing
+                        br
+                        p
+                            | The heatmap displays the average readings for each qaudrant. Smoothing the heatmap will add a blurring affect which creates gradients between the blocks.
+                            | Although this may look more realistic, smoothing makes assumptions and therefore may make it more challenging to identify problem areas.
+
+                        button#toggleMoistButton.smooth-button(onclick="toggleMoistSmoothing()") Toggle Smoothing
+                        br
+                        br
+                    .analysis-text
+                    #pH-heatmap
+                    #ph-smoothing
+                        br
+                        p
+                            | The heatmap displays the average readings for each qaudrant. Smoothing the heatmap will add a blurring affect which creates gradients between the blocks.
+                            | Although this may look more realistic, smoothing makes assumptions and therefore may make it more challenging to identify problem areas.
+                        
+                        button#togglePHButton.smooth-button(onclick="togglePHSmoothing()") Toggle Smoothing
+                    br
+                    br
+        h2
+            button.collapsible(type='button') Trends
+            .content
+                .title-with-margins.analysis-section-title
+                    h3 Trends
+                .analysis-text
+                    p These graphs show the change in readings values over time. The dark blue lines indicate the desired values and the light blue blocks indicate the acceptable values, based on your desired values. The acceptable values are those values that are within a acceptable range from the desired value.  
+                
+
+                .row.trends
+                    .col-xs-4.col-centered
+                    .card.card-1.card-contents.trends
+                        .col-md-5
+                        #chartContainer1(style='height: 250px; width: 100%;')
+                        //- p Start Date: 
+                        //-     input#myDate(type='date')
+                        //- p End Date:
+                        //-     input#myDate(type='date')
+
+                    .col-xs-4.col-centered
+                    .card.card-1.card-contents.trends
+                        #chartContainer2(style='height: 250px; width: 100%;')
+                
+                    .col-xs-4.col-centered
+                    .card.card-1.card-contents.trends
+                        #chartContainer3(style='height: 250px; width: 100%;')
+                    br
+
+        //- br
+        // LAND ANALYSIS AREA ENDS HERE
+        a(href=routes.deleteLand(land.id) data-confirm="Are you sure to delete this item?") 
+            button.delete().delete Remove Land Entry
+            //- button.delete(onclick="confirmDelete()").delete Remove Land Entry
+    

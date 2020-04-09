@@ -1,0 +1,32 @@
+extends main
+include mixins/landBlock
+
+block content
+    .logo-block
+      img(src='images/sdp-logo.png' alt='eIEIO Logo' height="220")
+      br
+      h3 Welcome Back! 
+      br
+      h4 View your monitored lands:
+
+        //- h4 Helping You Make the Most of Your Land
+        //- br
+
+    .land-box
+      br
+      .home-lands
+        each land in lands.sort()
+          .grid-item
+            //- #row-auto
+            +landBlock({
+              id: land.id,
+              name: land.name
+            })
+            //- #row-auto
+              //- p 1 Severe Warning, 3 Warnings
+
+
+        grid-tem
+          .form-container
+            form(action=`/lands${routes.addLand}`, method="get").addland
+              input(type="submit", value="+ Add Land")
