@@ -1,2 +1,5 @@
 node_modules
 build
+.env
+.babelrc
+.DS_Store
